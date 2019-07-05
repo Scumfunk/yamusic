@@ -1,0 +1,15 @@
+{
+  "name": "yamusuc",
+  "version": "1.0.0",
+  "description": "Yandex Music client with Touchbar and global shortcuts support",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Yury Ivannikov",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^5.0.6"
+  }
+}
