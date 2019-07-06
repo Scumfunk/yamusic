@@ -6,19 +6,19 @@ class Player {
     }
 
     play = () => {
-        this.window.webContents.executeJavaScript('externalAPI.togglePause();')
+        this.window.webContents.executeJavaScript('externalAPI.togglePause();').catch(()=>{console.log('Some problems with play')})
     }
 
     next = () => {
-        this.window.webContents.executeJavaScript('externalAPI.next();')
+        this.window.webContents.executeJavaScript('externalAPI.next();').catch(()=>{console.log('Some problems with next')})
     }
 
     prev = () => {
-        this.window.webContents.executeJavaScript('externalAPI.prev();')
+        this.window.webContents.executeJavaScript('externalAPI.prev();').catch(()=>{console.log('Some problems with prev')})
     }
 
     like = () => {
-        this.window.webContents.executeJavaScript('externalAPI.toggleLike();')
+        this.window.webContents.executeJavaScript('externalAPI.toggleLike();').catch(()=>{console.log('Some problems with like')})
     }
 
     currentTrack = () => {
@@ -27,6 +27,10 @@ class Player {
 
     isPlaying = () => {
         return this.window.webContents.executeJavaScript('externalAPI.isPlaying();')
+    }
+
+    controls = () => {
+        return this.window.webContents.executeJavaScript('externalAPI.getControls();')
     }
 }
 
