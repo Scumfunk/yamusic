@@ -3,7 +3,14 @@
 const EventEmmiter = require('events')
 const { ipcMain } = require('electron');
 
-// This class is Yandex external API integration point. It provides sync interface to control player and events emitting on API changes.
+// This class is Yandex external API integration point. It provides sync interface to control player and events emitting on changes.
+// Has next events to subscribe:
+// - EVENT_READY
+// - EVENT_TRACK
+// - EVENT_STATE
+// - EVENT_CONTROLS
+// - EVENT_PROGRESS
+// - EVENT_ADVERT
 
 class Player extends EventEmmiter {
     constructor(window){

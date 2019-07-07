@@ -2,6 +2,8 @@
 
 const { globalShortcut } = require('electron');
 
+// Manages all the system shortcuts
+
 class ShortcutManager {
     constructor(player){
         this.player = player;

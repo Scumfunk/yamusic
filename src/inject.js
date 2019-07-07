@@ -1,3 +1,5 @@
+// Code to execute on Yandex Music page. Throws callbacks to app through IPC.
+
 init = () => {
     const { ipcRenderer } = require('electron')
     window.ipcRenderer = ipcRenderer

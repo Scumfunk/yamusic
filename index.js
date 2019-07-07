@@ -7,7 +7,7 @@ const { YTouchBar } = require('./src/yTouchBar');
 const { ShortcutManager } = require('./src/shortcutManager');
 
 app.on('ready', () => {
-    const win = new BrowserWindow({ width: 800, height: 800, webPreferences: {preload: path.join(__dirname, 'src/inject.js')}})
+    let win = new BrowserWindow({ width: 800, height: 800, webPreferences: {preload: path.join(__dirname, 'src/inject.js')}})
     let player = new Player(win)
     let touchBar = new YTouchBar(player)
     let shortcuts = new ShortcutManager(player)

@@ -4,6 +4,8 @@ const { TouchBar, ipcMain } = require('electron');
 const { TouchBarButton, TouchBarSpacer, TouchBarLabel } = TouchBar
 const nativeImage = require('electron').nativeImage
 
+// Handles all the TouchBar logic
+
 class YTouchBar {
     constructor(player){
         this.player = player;

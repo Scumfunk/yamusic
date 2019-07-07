@@ -5,11 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "lint": "eslint --ignore-path .gitignore ."
   },
   "author": "Yury Ivannikov",
   "license": "ISC",
   "dependencies": {
     "electron": "^5.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-strongloop": "^2.1.0"
   }
 }
