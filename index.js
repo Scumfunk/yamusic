@@ -26,18 +26,6 @@ app.on('ready', () => {
         win.setTouchBar(touchBar.make())
         shortcuts.registerEvents(win)
 
-        ipcMain.on('EVENT_TRACK', (event, arg) => {
-            touchBar.updateTrackLabel()
-        })
-
-        ipcMain.on('EVENT_STATE', (event, arg) => {
-            touchBar.updatePlayingStatus()
-        })
-
-        ipcMain.on('EVENT_CONTROLS', (event, arg) => {
-            touchBar.updateControls()
-        })
-
         win.webContents.executeJavaScript('window.injectCallbacks()')
     });
 })
