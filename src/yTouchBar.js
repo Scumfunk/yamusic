@@ -25,17 +25,6 @@ class YTouchBar {
     }
 
     make = () => {
-        ipcMain.on('EVENT_TRACK', (event, arg) => {
-            this.updateTrackLabel()
-        })
-
-        ipcMain.on('EVENT_STATE', (event, arg) => {
-            this.updatePlayingStatus()
-        })
-
-        ipcMain.on('EVENT_CONTROLS', (event, arg) => {
-            this.updateControls()
-        })
 
         this.playButton = new TouchBarButton({
             icon: this.images.play,
@@ -76,38 +65,28 @@ class YTouchBar {
                 new TouchBarSpacer({ size: 'snall' }),
             ]
         })
+
+        this.subscribeEvents()
         
         return this.touchBar
     }
 
-    updateTrackLabel = () => {
-        this.player.currentTrack()
-            .then((track)=>{
-                let artists = track.artists.map((item) => {return item.title}).join(', ')
-                this.trackLabel.label = [artists, track.title].join(' - ')
-                this.nextButton.backgroundColor = track.next ? this.colors.mainButton : this.colors.secondButton
-            })
-            .catch( ()=>{ console.log('Some problems with update track label') } )
-    }
+    subscribeEvents(){
+        this.player.on('EVENT_TRACK', () => {
+            let track = this.player.currentTrack()
+            let artists = track.artists.map((item) => {return item.title}).join(', ')
+            this.trackLabel.label = [artists, track.title].join(' - ')
+            this.likeButton.backgroundColor = this.player.isCurrentTrackLiked() ? this.colors.likeButton : this.colors.secondButton
+        })
 
-    updatePlayingStatus = () => {
-        this.player.isPlaying()
-            .then( (res) => { this.playButton.icon = res ? this.images.pause : this.images.play } )
-            .catch( ()=>{ console.log('Some problems with update playing status') } )
-    }
+        this.player.on('EVENT_STATE', () => {
+            this.playButton.icon = this.player.isPlaying() ? this.images.pause : this.images.play
+        })
 
-    updateControls = () => {
-        this.player.controls()
-            .then( (res) => {
-                this.prevButton.backgroundColor = res.prev ? this.colors.mainButton : this.colors.secondButton
-                this.nextButton.backgroundColor = res.next ? this.colors.mainButton : this.colors.secondButton
-            })
-            .catch( ()=>{ console.log('Some problems with update player controls') } )
-        this.player.currentTrack()
-            .then((track) => {
-                this.likeButton.backgroundColor = track.liked ? this.colors.likeButton : this.colors.secondButton
-            })
-            .catch( ()=>{ console.log('Some problems with update like status') } )
+        this.player.on('EVENT_CONTROLS', () => {
+            this.prevButton.backgroundColor = this.player.canPrev() ? this.colors.mainButton : this.colors.secondButton
+            this.nextButton.backgroundColor = this.player.canNext() ? this.colors.mainButton : this.colors.secondButton
+        })
     }
 }
 
