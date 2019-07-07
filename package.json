@@ -6,17 +6,25 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "lint": "eslint --ignore-path .gitignore ."
+    "lint": "eslint --ignore-path .gitignore .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "Yury Ivannikov",
   "license": "ISC",
-  "dependencies": {
-    "electron": "^5.0.6"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "electron": "^5.0.6",
     "babel-eslint": "^10.0.2",
+    "electron-builder": "^20.44.4",
     "eslint": "^6.0.1",
     "eslint-config-google": "^0.13.0",
     "eslint-config-strongloop": "^2.1.0"
+  },
+  "build": {
+    "appId": "your.id",
+    "mac": {
+      "category": "your.app.category.type"
+    }
   }
 }
