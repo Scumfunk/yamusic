@@ -69,11 +69,11 @@ class YTouchBar {
             items: [
                 this.playButton,
                 this.prevButton,
+                this.nextButton,
+                this.likeButton,
                 new TouchBarSpacer({ size: 'small' }),
                 this.trackLabel,
                 new TouchBarSpacer({ size: 'snall' }),
-                this.nextButton,
-                this.likeButton,
             ]
         })
         
@@ -81,25 +81,33 @@ class YTouchBar {
     }
 
     updateTrackLabel = () => {
-        this.player.currentTrack().then((track)=>{
-            let artists = track.artists.map((item) => {return item.title}).join(', ')
-            this.trackLabel.label = [artists, track.title].join(' - ')
-            this.nextButton.backgroundColor = res.next ? this.colors.mainButton : this.colors.secondButton
-        })
+        this.player.currentTrack()
+            .then((track)=>{
+                let artists = track.artists.map((item) => {return item.title}).join(', ')
+                this.trackLabel.label = [artists, track.title].join(' - ')
+                this.nextButton.backgroundColor = track.next ? this.colors.mainButton : this.colors.secondButton
+            })
+            .catch( ()=>{ console.log('Some problems with update track label') } )
     }
 
     updatePlayingStatus = () => {
-        this.player.isPlaying().then( (res) => { this.playButton.icon = res ? this.images.pause : this.images.play } )
+        this.player.isPlaying()
+            .then( (res) => { this.playButton.icon = res ? this.images.pause : this.images.play } )
+            .catch( ()=>{ console.log('Some problems with update playing status') } )
     }
 
     updateControls = () => {
-        this.player.controls().then( (res) => {
-            this.prevButton.backgroundColor = res.prev ? this.colors.mainButton : this.colors.secondButton
-            this.nextButton.backgroundColor = res.next ? this.colors.mainButton : this.colors.secondButton
-        })
-        this.player.currentTrack().then((track) => {
-            this.likeButton.backgroundColor = track.liked ? this.colors.likeButton : this.colors.secondButton
-        })
+        this.player.controls()
+            .then( (res) => {
+                this.prevButton.backgroundColor = res.prev ? this.colors.mainButton : this.colors.secondButton
+                this.nextButton.backgroundColor = res.next ? this.colors.mainButton : this.colors.secondButton
+            })
+            .catch( ()=>{ console.log('Some problems with update player controls') } )
+        this.player.currentTrack()
+            .then((track) => {
+                this.likeButton.backgroundColor = track.liked ? this.colors.likeButton : this.colors.secondButton
+            })
+            .catch( ()=>{ console.log('Some problems with update like status') } )
     }
 }
 
