@@ -5,25 +5,25 @@ const { globalShortcut } = require('electron');
 // Manages all the system shortcuts
 
 class ShortcutManager {
-    constructor(player){
+    constructor(player) {
         this.player = player;
     }
 
-    registerEvents = () => {
+    registerEvents() {
         const bindings = {
             'MediaPlayPause': this.player.play,
             'MediaNextTrack': this.player.next,
-            'MediaPreviousTrack': this.player.prev
-        }
+            'MediaPreviousTrack': this.player.prev,
+        };
 
-        for (let key in bindings) {
-            let ret = globalShortcut.register(key, bindings[key]);
+        for (const key in bindings) {
+            const ret = globalShortcut.register(key, bindings[key]);
             if (!ret) {
-                console.log('Error binding key')
+                console.log('Error binding key');
                 return;
             }
         }
     }
 }
 
-module.exports.ShortcutManager = ShortcutManager
+module.exports.ShortcutManager = ShortcutManager;
