@@ -1,5 +1,5 @@
 {
-  "name": "yamusuc",
+  "name": "yamusic",
   "version": "1.0.0",
   "description": "Yandex Music client with Touchbar and global shortcuts support",
   "main": "index.js",
