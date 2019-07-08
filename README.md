@@ -5,7 +5,7 @@ Yandex Music electron app with Macbooks's Touchbar and global shortcuts support
 
 1. Clone this repo
 ```
-git clone 
+git clone git@github.com:Scumfunk/yamusic.git
 cd yamusic
 ```
 
