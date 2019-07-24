@@ -1,12 +1,38 @@
 'use strict';
 
-const { globalShortcut } = require('electron');
+const { globalShortcut, dialog } = require('electron');
 
 // Manages all the system shortcuts
 
 class ShortcutManager {
     constructor(player) {
         this.player = player;
+        this.shouldBind = true;
+    }
+
+    bindKeys(){
+        let counter = 0;
+        let reg = this.registerEvents();
+        while (this.shouldBind && !reg && counter < 5) {
+            console.log(this.shouldBind);
+            dialog.showMessageBox({
+                type: 'warning',
+                buttons: ['Try again', 'It doesn`t matter'],
+                title: 'Cannot bing OS shortcuts',
+                'message': 'Cant bind global shortcut'
+            },
+            (response) => {
+                switch (response) {
+                case 1:
+                    this.shouldBind = false;
+                    break;
+                case 0:
+                    reg = this.registerEvents();
+                    break;
+                }
+            });
+            counter += 1;
+        }
     }
 
     registerEvents() {
@@ -16,13 +42,13 @@ class ShortcutManager {
             'MediaPreviousTrack': this.player.prev,
         };
 
-        for (const key in bindings) {
-            const ret = globalShortcut.register(key, bindings[key]);
-            if (!ret) {
-                console.log('Error binding key');
-                return;
-            }
+        let res = true;
+
+        for (let key in bindings) {
+            res = res && globalShortcut.register(key, bindings[key]);
         }
+
+        return res;
     }
 }
 
