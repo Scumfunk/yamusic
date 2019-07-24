@@ -1,17 +1,19 @@
 module.exports = {
     "env": {
         "commonjs": true,
+        "node": true,
+        "mocha": true,
         "es6": true,
-        "node": true
     },
     "parser": "babel-eslint",
     "parserOptions": {
-        "ecmaVersion": 2018,
+        "ecmaVersion": 2019,
         "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true,
             "modules": true,
-            "experimentalObjectRestSpread": true
+            "experimentalObjectRestSpread": true,
+            "impliedStrict": true
         }
     },
     "extends": "eslint:recommended",
@@ -20,9 +22,10 @@ module.exports = {
         "SharedArrayBuffer": "readonly"
     },
     "rules": {
-      "no-undef": ["warn"],
+      "no-undef": ["off"],
       "no-unused-vars": ["warn"],
       "indent": ["error", 4],
-      "object-curly-spacing": ["error", "always"]
+      "object-curly-spacing": ["error", "always"],
+      "semi": ["error", "always"]
     }
 };

@@ -26,7 +26,7 @@ class YTouchBar {
         };
     }
 
-    make() {
+    build() {
         this.playButton = new TouchBarButton({
             icon: this.images.play,
             backgroundColor: this.colors.playButton,

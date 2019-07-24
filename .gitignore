@@ -62,3 +62,6 @@ typings/
 
 # dist
 dist
+
+# Mac OS X files
+.DS_Store

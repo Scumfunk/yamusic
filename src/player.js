@@ -1,7 +1,6 @@
-'use strict';
+"use strict";
 
 const EventEmmiter = require('events');
-const { ipcMain } = require('electron');
 
 // This class is Yandex external API integration point. It provides sync interface to control player and events emitting on changes.
 // Has next events to subscribe:
@@ -13,16 +12,17 @@ const { ipcMain } = require('electron');
 // - EVENT_ADVERT
 
 class Player extends EventEmmiter {
-    constructor(window) {
+    constructor(window, ipcMain) {
         super();
         this.window = window;
+        this.ipcMain = ipcMain;
         this.state = {};
 
-        ipcMain.on('EVENT_READY', (event, arg) => {
+        this.ipcMain.on('EVENT_READY', () => {
             this.emit('EVENT_READY');
         });
 
-        ipcMain.on('EVENT_TRACK', (event, arg) => {
+        this.ipcMain.on('EVENT_TRACK', () => {
             this.window.webContents.executeJavaScript('externalAPI.getCurrentTrack();')
                 .then((track) => {
                     this.state.track = track;
@@ -30,7 +30,7 @@ class Player extends EventEmmiter {
                 });
         });
 
-        ipcMain.on('EVENT_STATE', (event, arg) => {
+        this.ipcMain.on('EVENT_STATE', () => {
             this.window.webContents.executeJavaScript('externalAPI.isPlaying();')
                 .then((status) => {
                     this.state.isPlaying = status;
@@ -38,7 +38,7 @@ class Player extends EventEmmiter {
                 });
         });
 
-        ipcMain.on('EVENT_CONTROLS', (event, arg) => {
+        this.ipcMain.on('EVENT_CONTROLS', () => {
             this.window.webContents.executeJavaScript('externalAPI.getControls();')
                 .then( (controls) => {
                     this.state.controls = controls;
@@ -46,7 +46,7 @@ class Player extends EventEmmiter {
                 });
         });
 
-        ipcMain.on('EVENT_PROGRESS', (event, arg) => {
+        this.ipcMain.on('EVENT_PROGRESS', () => {
             this.window.webContents.executeJavaScript('externalAPI.getProgress();')
                 .then( (progress) => {
                     this.state.progress = progress;
@@ -54,7 +54,7 @@ class Player extends EventEmmiter {
                 });
         });
 
-        ipcMain.on('EVENT_ADVERT', (event, arg) => {
+        this.ipcMain.on('EVENT_ADVERT', (_, arg) => {
             this.state.advert = arg;
             this.emit('EVENT_ADVERT');
         });
@@ -129,7 +129,7 @@ class Player extends EventEmmiter {
         return this.state.track.cover.replace('%%', size);
     }
 
-    currentTrack = () => {
+    currentTrack = () => { 
         return this.state.track;
     }
 
