@@ -51,5 +51,6 @@ deploy:
     - "dist/YaMusic-*.dmg"
   skip_cleanup: true
   on:
-    all_branches: true
-  publish: "never"
+      tags: true
+  overwrite: true
+  #publish: "never"
