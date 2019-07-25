@@ -40,9 +40,9 @@ deploy:
   api_key: $GITHUB_TOKEN
   file_glob: true
   file:
-    - "dist/YaMusuc-*.dmg"
     - "dist/YaMusic Setup*.exe"
     - "dist/yamusic_*.snap"
+    - "dist/YaMusuc*.dmg"
   skip_cleanup: true
   draft: true
   on:
