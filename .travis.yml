@@ -10,6 +10,5 @@ branches:
   - develop
   - feature/travis_ci
 script:
-- npm i
 - npm test
-- npm run build:all
+- npm run dist:all
