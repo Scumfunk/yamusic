@@ -2,6 +2,8 @@
   "name": "yamusic",
   "version": "1.0.0",
   "description": "Yandex Music client with Touchbar and global shortcuts support",
+  "author": "Yury Ivannikov <yuryivannikov@yandex.ru> (https://github.com/scumfunk/)",
+  "license": "ISC",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/.bin/mocha ./test/*.js",
@@ -9,14 +11,12 @@
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore . --fix",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder",
-    "dist:all": "electron-builder -mwl",
-    "dist:linux": "electron-builder -l",
-    "dist:osx": "electron-builder -m",
-    "dist:windows": "electron-builder -w"
+    "dist": "electron-builder --publish never",
+    "dist:all": "electron-builder -mwl --publish never",
+    "dist:linux": "electron-builder -l --publish never",
+    "dist:osx": "electron-builder -m --publish never",
+    "dist:windows": "electron-builder -w --publish never"
   },
-  "author": "Yury Ivannikov",
-  "license": "ISC",
   "dependencies": {},
   "devDependencies": {
     "electron": "^5.0.6",
@@ -37,12 +37,17 @@
   "build": {
     "appId": "com.electron.yamusic",
     "productName": "YaMusic",
-    "publish": "never",
+    "icon": "./assest/icons/icon.png",
     "mac": {
-      "category": "public.app-category.music"
+      "category": "public.app-category.music",
+      "target":"dmg"
     },
     "linux": {
-      "category":"Audio"
+      "category":"Audio",
+      "target":["tar.gz", "snap", "deb", "rpm"]
+    },
+    "win":{
+      "target":["portable", "msi"]
     }
   }
 }

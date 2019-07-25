@@ -42,8 +42,11 @@ deploy:
   api_key: $GITHUB_TOKEN
   file_glob: true
   file:
-    - "dist/YaMusic Setup*.exe"
+    - "dist/YaMusic*.exe"
+    - "dist/yamusic-*.tar.gz"
+    - "dist/yamusic-*.rpm"
     - "dist/yamusic_*.snap"
+    - "dist/yamusic_*.deb"
     - "dist/YaMusic-*.dmg"
   skip_cleanup: true
   on:
