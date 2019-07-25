@@ -37,6 +37,7 @@
   "build": {
     "appId": "com.electron.yamusic",
     "productName": "YaMusic",
+    "publish": "never",
     "mac": {
       "category": "public.app-category.music"
     },

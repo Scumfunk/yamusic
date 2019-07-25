@@ -27,11 +27,10 @@ branches:
 
 script:
 - |
-    if [ "$TRAVIS_OS_NAME" == "windows" ]; then
-      npm run dist -w
-    else
-      npm test && npm run dist -lm
-    fi
+    if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      npm test
+    fi;
+    npm dist
 
 # before_deploy:
 #   - git config --local user.name "Yury Ivannikov"
@@ -49,3 +48,4 @@ deploy:
   skip_cleanup: true
   on:
     all_branches: true
+  publish: "never"
