@@ -9,6 +9,8 @@ matrix:
         - xvfb
       language: node_js
       node_js: "node"
+      before_install:
+        - sudo apt-get install -y rpm rpmbuild
     - os: osx
       language: node_js
       node_js: "node"
