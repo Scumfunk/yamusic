@@ -3,6 +3,7 @@ branches:
   only:
   - master
   - develop
+  - feature/travis_ci
 script:
 - npm i
 - npm test
