@@ -12,7 +12,7 @@
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore . --fix",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder --publish never",
+    "dist": "electron-builder",
     "dist:all": "electron-builder -mwl --publish never",
     "dist:linux": "electron-builder -l --publish never",
     "dist:osx": "electron-builder -m --publish never",
