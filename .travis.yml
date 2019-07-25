@@ -46,7 +46,5 @@ deploy:
     - "dist/YaMusic_*.snap"
   skip_cleanup: true
   draft: true
-    branches:
-    only:
-      - master
-      - feature/travis_ci
+  on:
+    all_branches: true
