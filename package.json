@@ -10,7 +10,10 @@
     "lint:fix": "eslint --ignore-path .gitignore . --fix",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "dist:all": "electron-builder -mwl"
+    "dist:all": "electron-builder -mwl",
+    "dist:linux": "electron-builder -l",
+    "dist:osx": "electron-builder -m",
+    "dist:windows": "electron-builder -w"
   },
   "author": "Yury Ivannikov",
   "license": "ISC",
@@ -36,6 +39,9 @@
     "productName": "YaMusic",
     "mac": {
       "category": "public.app-category.music"
+    },
+    "linux": {
+      "category":"Audio"
     }
   }
 }

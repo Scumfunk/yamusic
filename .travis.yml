@@ -9,6 +9,9 @@ matrix:
         - xvfb
       language: node_js
       node_js: "node"
+    - os: osx
+      language: node_js
+      node_js: "node"
 
 cache:
   directories:
@@ -30,11 +33,11 @@ script:
       npm test && npm run dist -lm
     fi
 
-before_deploy:
-  - git config --local user.name "Yury Ivannikov"
-  - git config --local user.email "yuryivannikov@yandex.ru"
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(git log --format=%h -1)}
-  - git tag $TRAVIS_TAG
+# before_deploy:
+#   - git config --local user.name "Yury Ivannikov"
+#   - git config --local user.email "yuryivannikov@yandex.ru"
+#   - export TRAVIS_TAG=${TRAVIS_TAG:-$(git log --format=%h -1)}
+#   - git tag $TRAVIS_TAG
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
@@ -42,8 +45,7 @@ deploy:
   file:
     - "dist/YaMusic Setup*.exe"
     - "dist/yamusic_*.snap"
-    - "dist/YaMusic*.dmg"
+    - "dist/YaMusic-*.dmg"
   skip_cleanup: true
-  draft: true
   on:
     all_branches: true
