@@ -1,0 +1,9 @@
+language: node_js
+branches:
+  only:
+  - master
+  - develop
+script:
+- npm i
+- npm test
+- npm run build:all
