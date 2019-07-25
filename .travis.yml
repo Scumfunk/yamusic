@@ -10,7 +10,7 @@ matrix:
       language: node_js
       node_js: "node"
       before_install:
-        - sudo apt-get install -y rpm rpmbuild
+        - sudo apt-get install -y rpm
     - os: osx
       language: node_js
       node_js: "node"
