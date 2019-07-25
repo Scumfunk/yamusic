@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Scumfunk/yamusic.svg?branch=master)](https://travis-ci.org/Scumfunk/yamusic)
+
 # YaMusic
 Yandex Music electron app with Macbooks's Touchbar and global shortcuts support
 
