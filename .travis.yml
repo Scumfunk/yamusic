@@ -30,7 +30,7 @@ script:
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       npm test
     fi;
-    npm dist
+    npm run dist
 
 # before_deploy:
 #   - git config --local user.name "Yury Ivannikov"
