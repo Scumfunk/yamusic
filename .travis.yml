@@ -43,6 +43,7 @@ deploy:
   file_glob: true
   file:
     - "dist/YaMusic*.exe"
+    - "dist/YaMusic*.msi"
     - "dist/yamusic-*.tar.gz"
     - "dist/yamusic-*.rpm"
     - "dist/yamusic_*.snap"
