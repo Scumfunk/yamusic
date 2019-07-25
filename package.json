@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Yandex Music client with Touchbar and global shortcuts support",
   "author": "Yury Ivannikov <yuryivannikov@yandex.ru> (https://github.com/scumfunk/)",
+  "homepage":"https://github.com/Scumfunk/yamusic",
   "license": "ISC",
   "main": "index.js",
   "scripts": {

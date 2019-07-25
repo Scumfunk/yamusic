@@ -15,7 +15,7 @@ app.on('ready', () => {
                 nodeIntegration: true,
                 experimentalFeatures: true,
                 show: false,
-                icon: path.join(__dirname, 'assets/icons/icon.png')
+                icon: path.join(__dirname, 'build/icon.png')
             },
         }
     );
