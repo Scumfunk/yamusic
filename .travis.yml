@@ -42,7 +42,7 @@ deploy:
   file:
     - "dist/YaMusic Setup*.exe"
     - "dist/yamusic_*.snap"
-    - "dist/YaMusuc*.dmg"
+    - "dist/YaMusic*.dmg"
   skip_cleanup: true
   draft: true
   on:
