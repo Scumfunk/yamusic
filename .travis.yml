@@ -15,7 +15,7 @@ cache:
     - node_modules
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
-    
+
 branches:
   only:
   - master
@@ -23,10 +23,9 @@ branches:
   - feature/travis_ci
 
 script:
-- npm test
 - |
     if [ "$TRAVIS_OS_NAME" == "windows" ]; then
       npm run dist -w
     else
-      npm run dist -lm
+      npm test && npm run dist -lm
     fi
