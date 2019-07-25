@@ -9,28 +9,32 @@ const { ShortcutManager } = require('./src/shortcutManager');
 app.on('ready', () => {
     let win = new BrowserWindow(
         {
-            width: 1200, height: 800, webPreferences: {
+            width: 1200, height: 800,
+            webPreferences: {
                 preload: path.join(__dirname, 'src/inject.js'),
                 nodeIntegration: true,
                 experimentalFeatures: true,
-
+                show: false,
             },
         }
     );
     const player = new Player(win, ipcMain);
     const touchBar = new YTouchBar(player);
     const shortcuts = new ShortcutManager(player);
+    player.on('EVENT_READY', () => {
+        if (process.env.NODE_ENV !== 'test') {
+            win.setTouchBar(touchBar.build());
+            shortcuts.bindKeys(win);
+        }
+    });
+
+    win.loadURL('https://music.yandex.ru');
+
     win.on('closed', () => {
         win = null;
     });
 
-    win.loadURL('https://music.yandex.ru');
-    win.webContents.executeJavaScript('window.injectCallbacks()');
-
-    player.on('EVENT_READY', () => {
-        console.log(player);
-        win.setTouchBar(touchBar.build());
-        shortcuts.bindKeys(win);
+    win.on('ready-to-show', () => {
         win.show();
         win.focus();
     });

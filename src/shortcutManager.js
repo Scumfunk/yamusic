@@ -14,7 +14,6 @@ class ShortcutManager {
         let counter = 0;
         let reg = this.registerEvents();
         while (this.shouldBind && !reg && counter < 5) {
-            console.log(this.shouldBind);
             dialog.showMessageBox({
                 type: 'warning',
                 buttons: ['Try again', 'It doesn`t matter'],

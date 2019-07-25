@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'test') {
     window.electronRequire = require;
 }
 
-window.injectCallbacks = () => {
+window.onready = function(){
     externalAPI.on(externalAPI.EVENT_READY, () => {
         ipcRenderer.send('EVENT_READY', null);
     });
@@ -33,4 +33,3 @@ window.injectCallbacks = () => {
         ipcRenderer.send('EVENT_ADVERT', arg);
     });
 };
-
