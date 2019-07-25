@@ -45,3 +45,8 @@ deploy:
     - "dist/YaMusic Setup*.exe"
     - "dist/YaMusic_*.snap"
   skip_cleanup: true
+  draft: true
+    branches:
+    only:
+      - master
+      - feature/travis_ci
