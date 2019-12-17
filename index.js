@@ -5,6 +5,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { Player } = require('./src/player');
 const { YTouchBar } = require('./src/yTouchBar');
 const { ShortcutManager } = require('./src/shortcutManager');
+const { Notificator } = require('./src/notificator');
 
 app.on('ready', () => {
     let win = new BrowserWindow(
@@ -22,10 +23,12 @@ app.on('ready', () => {
     const player = new Player(win, ipcMain);
     const touchBar = new YTouchBar(player);
     const shortcuts = new ShortcutManager(player);
+    const notificator = new Notificator(player);
     player.on('EVENT_READY', () => {
         if (process.env.NODE_ENV !== 'test') {
             win.setTouchBar(touchBar.build());
             shortcuts.bindKeys(win);
+            notificator.build();
         }
     });
 
