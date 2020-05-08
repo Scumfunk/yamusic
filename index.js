@@ -5,6 +5,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { Player } = require('./src/player');
 const { YTouchBar } = require('./src/yTouchBar');
 const { ShortcutManager } = require('./src/shortcutManager');
+const { YTray } = require('./src/yTray');
 
 app.on('ready', () => {
     let win = new BrowserWindow(
@@ -22,6 +23,7 @@ app.on('ready', () => {
     const player = new Player(win, ipcMain);
     const touchBar = new YTouchBar(player);
     const shortcuts = new ShortcutManager(player);
+    const tray = new YTray(player);
     player.on('EVENT_READY', () => {
         if (process.env.NODE_ENV !== 'test') {
             win.setTouchBar(touchBar.build());
