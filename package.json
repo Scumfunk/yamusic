@@ -39,6 +39,15 @@
     "appId": "com.electron.yamusic",
     "productName": "YaMusic",
     "icon": "./assest/icons/icon.png",
+    "extraFiles": [
+      {
+        "from": "build/icons",
+        "to": "resources/icons",
+        "filter": [
+          "**/*.png"
+        ]
+      }
+    ],
     "mac": {
       "category": "public.app-category.music",
       "target":"dmg"
