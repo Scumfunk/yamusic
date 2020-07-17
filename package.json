@@ -33,7 +33,7 @@
     "mocha": "^6.1.4",
     "sinon": "^7.3.2",
     "spectron": "^7.0.0",
-    "lodash": ">=4.17.13"
+    "lodash": ">=4.17.19"
   },
   "build": {
     "appId": "com.electron.yamusic",
