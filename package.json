@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Yandex Music client with Touchbar and global shortcuts support",
   "author": "Yury Ivannikov <yuryivannikov@yandex.ru> (https://github.com/scumfunk/)",
-  "homepage":"https://github.com/Scumfunk/yamusic",
+  "homepage": "https://github.com/Scumfunk/yamusic",
   "license": "ISC",
   "main": "index.js",
   "scripts": {
@@ -20,20 +20,20 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "electron": "^5.0.6",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/register": "^7.5.5",
-    "babel-eslint": "^10.0.2",
-    "electron-builder": "^20.44.4",
-    "eslint": "^6.0.1",
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/register": "^7.12.1",
+    "babel-eslint": "^10.1.0",
+    "electron": "^10.1.4",
+    "electron-builder": "^22.9.1",
+    "eslint": "^6.8.0",
     "eslint-config-google": "^0.13.0",
     "eslint-config-strongloop": "^2.1.0",
-    "mocha": "^6.1.4",
-    "sinon": "^7.3.2",
-    "spectron": "^7.0.0",
-    "lodash": ">=4.17.13"
+    "lodash": "^4.17.20",
+    "mocha": "^6.2.3",
+    "sinon": "^7.5.0",
+    "spectron": "^12.0.0"
   },
   "build": {
     "appId": "com.electron.yamusic",
@@ -41,14 +41,22 @@
     "icon": "./assest/icons/icon.png",
     "mac": {
       "category": "public.app-category.music",
-      "target":"dmg"
+      "target": "dmg"
     },
     "linux": {
-      "category":"Audio",
-      "target":["tar.gz", "snap", "deb", "rpm"]
+      "category": "Audio",
+      "target": [
+        "tar.gz",
+        "snap",
+        "deb",
+        "rpm"
+      ]
     },
-    "win":{
-      "target":["portable", "msi"]
+    "win": {
+      "target": [
+        "portable",
+        "msi"
+      ]
     }
   }
 }
