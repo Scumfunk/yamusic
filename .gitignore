@@ -65,3 +65,7 @@ dist
 
 # Mac OS X files
 .DS_Store
+
+# JetBrains IDEA files
+.idea/
+
