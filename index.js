@@ -6,8 +6,10 @@ const { Player } = require('./src/player');
 const { YTouchBar } = require('./src/yTouchBar');
 const { ShortcutManager } = require('./src/shortcutManager');
 
+let win = null;
+
 app.on('ready', () => {
-    let win = new BrowserWindow(
+    win = new BrowserWindow(
         {
             width: 1200, height: 800,
             webPreferences: {
@@ -31,12 +33,31 @@ app.on('ready', () => {
 
     win.loadURL('https://music.yandex.ru');
 
-    win.on('closed', () => {
-        win = null;
+    win.on('close', (event) => {
+        if (app.quitting) {
+            win = null;
+        } else {
+            event.preventDefault();
+            win.hide();
+        }
     });
 
     win.on('ready-to-show', () => {
         win.show();
         win.focus();
     });
+
+
 });
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});
+
+app.on('activate', () => {
+    win.show();
+});
+
+app.on('before-quit', () => app.quitting = true);
